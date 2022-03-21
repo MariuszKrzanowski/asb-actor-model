@@ -74,59 +74,135 @@ select {
 
 /******************************/
 
-/*body {
-    font-size: 16pt;
-}*/
-
-main {
-    display: grid;
-    gap: 0.5em;
-    grid-template-columns: 1fr 1fr;
+body > header {
+    width: 100%;
+    background: linear-gradient(90deg, lightblue, lightsalmon);
 }
 
-.donors {
-    background-color: aquamarine;
+h1 {
+    text-align: center;
 }
 
-.necessitious {
-    background-color: yellowgreen;
+h2 {
+    font-size: 2.5em;
+}
+
+.donors > .panel {
+    background-color: lightblue;
+}
+
+.necessitious > .panel {
+    background-color: lightsalmon;
+}
+
+.container-main {
+    margin-top: 2em;
 }
 
 .container {
     display: grid;
     gap: 0.5em;
-    grid-template-columns: auto auto;
-    width: max-content;
+    grid-template-columns: repeat(4, 1fr );
 }
 
-.container li p {
+.panel ul li p {
     display: inline-block;
+    width: 8ch;
+    font-size: 1.5em;
+}
+
+input[type="number"] {
+    text-align: right;
 }
 
 .container li {
     list-style: none;
-
 }
 
-.container header h3 {
-   display: inline-block;
+.container main ul li > * {
+    margin: 0.1em 0.1em 0.1em 0.1em;
 }
 
-.refresh {
-    padding: 0;
-    margin: 0;
-    font-size: 2em;
+.panel {
+    width: fit-content;
+    border: solid rgba(30, 30, 33, .5);
+    box-shadow: 10px 5px 5px gray;
+    padding: 0.3em;
+    margin-right: 20px;
+    position: relative;
 }
+
+.panel-header {
+    top: 0.5em;
+    position: absolute;
+    width: 100%;
+    height: 3em;
+    text-align: left;
+    display: flex;
+}
+
+    .panel-header h3 {
+        font-size: 2rem;
+        width: 100%;
+    }
+
+    .panel-header div {
+        font-size: 3rem;
+        width: 100%;
+        height: 3rem;
+        
+    }
+
+   
+    .panel-header div button {
+        font-size: 3rem;
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        top: -1rem;
+        right: 1rem;
+    }
+
+div.panel ul {
+    padding-top: 40px;
+    display: grid;
+    gap: 0.2em;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+    div.panel ul li {
+        display: grid;
+        gap: 0.2em;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+
 
 input[type=number] {
-    width: 5em;
+    width: 3em;
     font-weight: bold;
+    text-align: right;
+}
+
+input[readonly] {
+    width: 3em;
+    font-weight: bold;
+    text-align: right;
 }
 
 .donors button {
-    background-color: green;
+    background-color: lightsalmon;
 }
 
 .necessitious button {
-    background-color: pink;
+    background-color: lightblue;
+}
+
+.need-icon {
+    font-size: 2em;
+}
+
+.icon {
+    font-size: 2em;
+    font-weight: bold;
 }

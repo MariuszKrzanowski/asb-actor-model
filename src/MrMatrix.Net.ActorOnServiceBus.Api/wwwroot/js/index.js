@@ -1,5 +1,7 @@
 ﻿(function (w) {
     var needs = ['shorts', 'socks', 't-shirt', 'dress', 'jacket'];
+
+    var needsText = ['👖', '🧦', '👕', '👗','🧥'];
     var donors = ['Chet', 'Kendra', 'Melinda', 'Bard']; // 'Betty',
     var necessitous = ['Bully', 'Crone', 'Hag', 'Milkman']; //'Pirate',
 
@@ -39,9 +41,9 @@
         };
     }
 
-    function buildNeedLine(uiRebuild, templateChild, parentContainer, parentKey, needKey, commandUrl, queryUrl) {
+    function buildNeedLine(uiRebuild, templateChild, parentContainer, parentKey, needKey, needText, commandUrl, queryUrl) {
         var needComponent = createElementFromHTML(templateChild);
-        needComponent.getElementsByTagName('p')[0].innerText = needKey;
+        needComponent.getElementsByTagName('span')[0].innerText = needText;
         var requestedValue = needComponent.getElementsByTagName('input')[0];
         var entered = needComponent.getElementsByTagName('input')[1];
         var balanced = needComponent.getElementsByTagName('input')[2];
@@ -86,7 +88,8 @@
 
         for (var n in needs) {
             var needKey = needs[n];
-            buildNeedLine(uiRebuild, templateChild, panel.getElementsByTagName('ul')[0], parentKey, needKey, commandUrl, queryUrl);
+            var needText = needsText[n];
+            buildNeedLine(uiRebuild, templateChild, panel.getElementsByTagName('ul')[0], parentKey, needKey, needText, commandUrl, queryUrl);
         }
         parentContainer.appendChild(panel);
     }

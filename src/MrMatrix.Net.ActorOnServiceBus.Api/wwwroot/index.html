@@ -11,13 +11,13 @@
         <h1>Samaritan - test panel</h1>
     </header>
     <main>
-        <div>
+        <div class="container-main">
             <h2>Donors</h2>
             <div class="container donors">
 
             </div>
         </div>
-        <div>
+        <div class="container-main">
             <h2>Necessitous</h2>
             <div class="container necessitious">
 
@@ -33,30 +33,35 @@
     </footer>
 
     <template name="parent">
-        <div>
-            <header>
-                <h3></h3>
-                <button type="button" class="refresh">🔄</button>
-            </header>
+        <div class="panel">
             <ul>
+                <li>
+                    <span class="need-icon"> </span>
+                    <span class="need-icon">🙏</span>
+                    <span class="need-icon">🎬</span>
+                    <span class="need-icon">👍</span>
+                    <span class="need-icon">💱</span>
+                </li>
             </ul>
-
+            <div class="panel-header">
+                <h3>x</h3>
+                <div><button class="refresh">🔄</button></div>
+            </div>
         </div>
     </template>
 
 
     <template name="line">
         <li>
-            <p>shorts</p>
+            <span class="need-icon">🙏</span>
             <input type="number" name="request" value="1" min="0" required="" />
-            <button >📩</button>
-            <input type="number" readonly="" value="" />
-            <input type="number" readonly="" value="" />
+            <button>📩</button>
+            <input readonly="" value="0" />
+            <input readonly="" value="0" />
         </li>
     </template>
 
 
-    <script lang="javas/script" src="js/index.js">
-    </script>
+    <script lang="javas/script" src="js/index.js"></script>
 </body>
 </html>
