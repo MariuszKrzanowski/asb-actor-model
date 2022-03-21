@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Samaritan - test page</title>
+    <link rel="stylesheet" href="css/index.css" />
+
+</head>
+<body>
+    <header>
+        <h1>Samaritan - test panel</h1>
+    </header>
+    <main>
+        <div>
+            <h2>Donors</h2>
+            <div class="container donors">
+
+            </div>
+        </div>
+        <div>
+            <h2>Necessitous</h2>
+            <div class="container necessitious">
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="swagger">Swagger</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <template name="parent">
+        <div>
+            <header>
+                <h3></h3>
+                <button type="button" class="refresh">🔄</button>
+            </header>
+            <ul>
+            </ul>
+
+        </div>
+    </template>
+
+
+    <template name="line">
+        <li>
+            <p>shorts</p>
+            <input type="number" name="request" value="1" min="0" required="" />
+            <button >📩</button>
+            <input type="number" readonly="" value="" />
+            <input type="number" readonly="" value="" />
+        </li>
+    </template>
+
+
+    <script lang="javas/script" src="js/index.js">
+    </script>
+</body>
+</html>

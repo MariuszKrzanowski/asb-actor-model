@@ -1,0 +1,35 @@
+@DonorId=Chet
+@necessitiousId=Bully
+@NecessityKey=tshirt
+@QuantityDonor=5
+@QuantityNecessitous=3
+
+###
+POST http://localhost:5266/donor/donorId/{{DonorId}}/registerDonation
+Content-Type: application/json
+Accept: application/json
+
+{
+  "key": "{{NecessityKey}}",
+  "quantity": "{{QuantityDonor}}"
+}
+
+###
+GET http://localhost:5266/donor/donorId/{{DonorId}}/balance
+Content-Type: application/json
+Accept: application/json
+
+###
+POST http://localhost:5266/necessitous/necessitiousId/{{necessitiousId}}/registerNecessity
+Content-Type: application/json
+Accept: application/json
+
+{
+  "key": "{{NecessityKey}}",
+  "quantity": "{{QuantityNecessitous}}"
+}
+
+###
+GET http://localhost:5266/necessitous/necessitiousId/{{necessitiousId}}/balance
+Content-Type: application/json
+Accept: application/json
