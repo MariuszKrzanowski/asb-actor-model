@@ -11,16 +11,18 @@
         <h1>Samaritan - test panel</h1>
     </header>
     <main>
-        <div class="container-main">
-            <h2>Donors</h2>
-            <div class="container donors">
+        <div class="main-content">
+            <div class="container-main">
+                <h2>Donors</h2>
+                <div class="container donors">
 
+                </div>
             </div>
-        </div>
-        <div class="container-main">
-            <h2>Necessitous</h2>
-            <div class="container necessitious">
+            <div class="container-main">
+                <h2>Necessitous</h2>
+                <div class="container necessitious">
 
+                </div>
             </div>
         </div>
     </main>
@@ -35,17 +37,16 @@
     <template name="parent">
         <div class="panel">
             <ul>
-                <li>
-                    <span class="need-icon"> </span>
+                <!--<li>
                     <span class="need-icon">🙏</span>
                     <span class="need-icon">🎬</span>
                     <span class="need-icon">👍</span>
                     <span class="need-icon">💱</span>
-                </li>
+                </li>-->
             </ul>
             <div class="panel-header">
                 <h3>x</h3>
-                <div><button class="refresh">🔄</button></div>
+                <div><button type="button" class="refresh">📤</button></div>
             </div>
         </div>
     </template>
@@ -53,11 +54,12 @@
 
     <template name="line">
         <li>
-            <span class="need-icon">🙏</span>
-            <input type="number" name="request" value="1" min="0" required="" />
-            <button>📩</button>
-            <input readonly="" value="0" />
-            <input readonly="" value="0" />
+            <input type="number" name="request" value="0" min="0" required="" />
+            <button class="submit-button">📩</button>
+            <span class="entered">0</span>
+            <span class="balanced">0</span>
+            <!--<input readonly="" value="0" />
+            <input readonly="" value="0" />-->
         </li>
     </template>
 

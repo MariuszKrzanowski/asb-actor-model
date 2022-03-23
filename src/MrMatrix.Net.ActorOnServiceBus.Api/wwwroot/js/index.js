@@ -1,7 +1,7 @@
 ﻿(function (w) {
-    var needs = ['shorts', 'socks', 't-shirt', 'dress', 'jacket'];
+    var needs = ['shorts', 't-shirt', 'dress', 'jacket'];
 
-    var needsText = ['👖', '🧦', '👕', '👗','🧥'];
+    var needsText = ['👖', '👕', '👗','🧥'];
     var donors = ['Chet', 'Kendra', 'Melinda', 'Bard']; // 'Betty',
     var necessitous = ['Bully', 'Crone', 'Hag', 'Milkman']; //'Pirate',
 
@@ -43,28 +43,30 @@
 
     function buildNeedLine(uiRebuild, templateChild, parentContainer, parentKey, needKey, needText, commandUrl, queryUrl) {
         var needComponent = createElementFromHTML(templateChild);
-        needComponent.getElementsByTagName('span')[0].innerText = needText;
         var requestedValue = needComponent.getElementsByTagName('input')[0];
-        var entered = needComponent.getElementsByTagName('input')[1];
-        var balanced = needComponent.getElementsByTagName('input')[2];
-        needComponent.getElementsByTagName('button')[0].addEventListener('click', function() {
+        var entered = needComponent.getElementsByTagName('span')[0];
+        var balanced = needComponent.getElementsByTagName('span')[1];
+        var button = needComponent.getElementsByTagName('button')[0];
+        button.innerText = needText;
+        button.addEventListener('click', function () {
             makePostCall(commandUrl, {
                 "key": needKey,
                 "quantity": requestedValue.valueAsNumber
-            }, function(responseObject) {
-                entered.value = responseObject['entered'];
-                balanced.value = responseObject['balanced'];
+            }, function (responseObject) {
+                entered.innerText = responseObject['entered'];
+                balanced.innerText = responseObject['balanced'];
             });
+            requestedValue.value = '0';
         });
 
         uiRebuild[needKey] = function (enteredValue, balancedValue) {
-            entered.value = enteredValue;
-            balanced.value = balancedValue;
+            entered.innerText = enteredValue;
+            balanced.innerText = balancedValue;
         }
         parentContainer.appendChild(needComponent);
     }
 
-    function buildCustomer(templateParent, templateChild, parentContainer, parentKey, urlPrefix, urlSuffix) {
+    function buildPersonPanel(templateParent, templateChild, parentContainer, parentKey, urlPrefix, urlSuffix) {
         var panel = createElementFromHTML(templateParent);
         panel.getElementsByTagName('h3')[0].innerText = parentKey;
         var commandUrl = urlPrefix + encodeURI(parentKey) + urlSuffix;
@@ -106,12 +108,12 @@
         
         for (var d in donors) {
             var donorKey = donors[d];
-            buildCustomer(templateParent, templateChild, donorContainer, donorKey, '/Donor/donorId/','/registerDonation');
+            buildPersonPanel(templateParent, templateChild, donorContainer, donorKey, '/Donor/donorId/','/registerDonation');
         }
 
         for (var n in necessitous) {
             var necessitousKey = necessitous[n];
-            buildCustomer(templateParent, templateChild, necessitousContainer, necessitousKey, '/Necessitous/necessitiousId/', '/registerNecessity');
+            buildPersonPanel(templateParent, templateChild, necessitousContainer, necessitousKey, '/Necessitous/necessitiousId/', '/registerNecessity');
         }
     });
 

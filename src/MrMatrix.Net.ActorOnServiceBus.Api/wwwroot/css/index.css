@@ -87,8 +87,56 @@ h2 {
     font-size: 2.5em;
 }
 
-.donors > .panel {
-    background-color: lightblue;
+.panel {
+    margin: 0.2rem 0.5rem 0.2rem 1rem;
+    float: left;
+}
+
+.donors, 
+.necessitious {
+    display: flow-root;
+}
+
+.main-content {
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, lightgray, darkgray, black, darkgray);
+}
+
+    .donors > .panel {
+        background-color: lightblue;
+    }
+
+    .donors span.entered {
+        color: green;
+        font-weight: bold;
+    }
+
+    .necessitious span.entered {
+        color: red;
+        font-weight: bold;
+    }
+
+span.balanced {
+    color: darkblue;
+    font-weight: bold;
+}
+
+span.balanced, span.entered {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 20%;
+    background-color: lightgoldenrodyellow;
+    height: 3rem;
+    width: 3rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 5px 3px 3px gray;
+}
+
+main {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .necessitious > .panel {
@@ -100,9 +148,9 @@ h2 {
 }
 
 .container {
-    display: grid;
+    /*display: grid;
     gap: 0.5em;
-    grid-template-columns: repeat(4, 1fr );
+    grid-template-columns: repeat(4, 1fr );*/
 }
 
 .panel ul li p {
@@ -113,6 +161,7 @@ h2 {
 
 input[type="number"] {
     text-align: right;
+    border-radius: 20%;
 }
 
 .container li {
@@ -130,6 +179,7 @@ input[type="number"] {
     padding: 0.3em;
     margin-right: 20px;
     position: relative;
+    border-radius: 2rem;
 }
 
 .panel-header {
@@ -150,18 +200,22 @@ input[type="number"] {
         font-size: 3rem;
         width: 100%;
         height: 3rem;
-        
     }
 
-   
-    .panel-header div button {
-        font-size: 3rem;
-        width: 3rem;
-        height: 3rem;
-        position: absolute;
-        top: -1rem;
-        right: 1rem;
-    }
+
+        .panel-header div button {
+            font-size: 3rem;
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            top: -2rem;
+            right: 0.5rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
 
 div.panel ul {
     padding-top: 40px;
@@ -184,18 +238,29 @@ input[type=number] {
     text-align: right;
 }
 
-input[readonly] {
+/*input[readonly] {
     width: 3em;
     font-weight: bold;
     text-align: right;
 }
+*/
 
-.donors button {
-    background-color: lightsalmon;
+button.submit-button {
+    border-radius: 0 50% 50% 0;
+    box-shadow: 5px 3px 3px gray;
+    cursor: pointer;
 }
 
-.necessitious button {
+.donors button.submit-button {
+    background-color: lightsalmon;
+    
+}
+.necessitious button.submit-button {
     background-color: lightblue;
+}
+
+button.submit-button:before {
+    content: '';
 }
 
 .need-icon {
