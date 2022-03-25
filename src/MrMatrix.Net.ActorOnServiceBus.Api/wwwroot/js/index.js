@@ -113,7 +113,7 @@
 
         for (var n in necessitous) {
             var necessitousKey = necessitous[n];
-            buildPersonPanel(templateParent, templateChild, necessitousContainer, necessitousKey, '/Necessitous/necessitiousId/', '/registerNecessity');
+            buildPersonPanel(templateParent, templateChild, necessitousContainer, necessitousKey, '/Necessitous/necessitousId/', '/registerNecessity');
         }
     });
 

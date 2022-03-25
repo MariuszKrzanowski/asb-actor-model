@@ -6,6 +6,7 @@ using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
 using MrMatrix.Net.ActorOnServiceBus.Messages;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Net.Http.Headers;
 using MrMatrix.Net.ActorOnServiceBus.Actors.Sagas;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
@@ -44,7 +45,24 @@ public static class Program
         }
 
         app.UseAuthorization();
-        app.UseStaticFiles();
+
+        if (app.Environment.IsDevelopment())
+        {
+            // based on blog article: https://andrewlock.net/adding-cache-control-headers-to-static-files-in-asp-net-core/
+            app.UseStaticFiles(new StaticFileOptions()
+                {
+                    OnPrepareResponse = ctx =>
+                    {
+                        ctx.Context.Response.Headers[HeaderNames.CacheControl] = "no-cache"; // To simplify DEV 
+                    }
+                }
+            );
+        }
+        else
+        {
+            app.UseStaticFiles();
+        }
+
         app.MapControllers();
 
         
@@ -52,7 +70,7 @@ public static class Program
         try
         {
             await app.StartAsync(cancellationToken);
-            IProcessorsCollection actorsMeshWaitingClient = (IProcessorsCollection)(app.Services.GetService<IActorSystemExternalClient>());
+            IProcessorsCollection actorsMeshWaitingClient = (IProcessorsCollection)(app.Services.GetService<IActorsNetworkExternalClient>());
             await actorsMeshWaitingClient.StartAsync(cancellationToken);
 
             IActorSystem actorSystem = (IActorSystem)app.Services.GetService<IActorSystem>();

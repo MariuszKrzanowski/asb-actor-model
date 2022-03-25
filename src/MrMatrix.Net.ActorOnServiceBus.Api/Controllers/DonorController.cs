@@ -13,9 +13,9 @@ namespace MrMatrix.Net.ActorOnServiceBus.Api.Controllers;
 public class DonorController : ControllerBase
 {
     private readonly ILogger<DonorController> _logger;
-    private readonly IActorSystemExternalClient _actorsMeshClient;
+    private readonly IActorsNetworkExternalClient _actorsMeshClient;
 
-    public DonorController(ILogger<DonorController> logger, IActorSystemExternalClient actorsMeshClient)
+    public DonorController(ILogger<DonorController> logger, IActorsNetworkExternalClient actorsMeshClient)
     {
         _logger = logger;
         _actorsMeshClient = actorsMeshClient;
@@ -24,22 +24,24 @@ public class DonorController : ControllerBase
     [HttpPost("donorId/{donorId}/registerDonation")]
     public async Task<IActionResult> Register([FromRoute] string donorId, [FromBody] Donation donation, CancellationToken cancellationToken)
     {
-        var result = await _actorsMeshClient.SendMessageToAndWait<DonorActor, DonationDto>(donorId, new()
+        var result = await _actorsMeshClient.SendMessage(new DonationDto()
         {
             DonorId = donorId,
             Key = donation.Key,
             Quantity = donation.Quantity
-        }, cancellationToken);
+        }).ToActorAndWait<DonorActor>(donorId, cancellationToken);
+
         return Ok(result);
     }
 
     [HttpGet("donorId/{donorId}/balance")]
     public async Task<IActionResult> Balance([FromRoute] string donorId, CancellationToken cancellationToken)
     {
-        var result = await _actorsMeshClient.SendMessageToAndWait<DonorActor, BalanceQueryDto>(donorId, new()
+        var result = await _actorsMeshClient.SendMessage(new BalanceQueryDto()
         {
             PersonId = donorId,
-        }, cancellationToken);
+        }).ToActorAndWait<DonorActor>(donorId, cancellationToken);
+        
         return Ok(result);
     }
 }

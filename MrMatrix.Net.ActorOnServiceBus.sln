@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrMatrix.Net.ActorOnServiceBus.Actors.Tests", "tests\MrMatrix.Net.ActorOnServiceBus.Actors.Tests\MrMatrix.Net.ActorOnServiceBus.Actors.Tests.csproj", "{1E94B932-18DC-4C5E-B5B1-F4176A4097A6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Services", "03.Services", "{8142CB21-C5CF-4161-B500-5AF5D60946CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Actors", "03.Actors", "{8142CB21-C5CF-4161-B500-5AF5D60946CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

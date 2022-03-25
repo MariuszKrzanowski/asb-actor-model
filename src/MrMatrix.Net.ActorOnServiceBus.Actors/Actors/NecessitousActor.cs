@@ -23,22 +23,13 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
 
         public Task Handle(NecessityDto necessity, CancellationToken cancellationToken)
         {
-            _actorsNetwork.Saga.NecessitousId = necessity.NecessitouId;
+            _actorsNetwork.Saga.NecessitousId = necessity.NecessitousId;
             _logger.LogInformation("Registered necessity");
-            if (_actorsNetwork.Saga.Balance.ContainsKey(necessity.Key))
-            {
-                _actorsNetwork.Saga.Balance[necessity.Key].Necessity += necessity.Quantity;
-            }
-            else
-            {
-                _actorsNetwork.Saga.Balance[necessity.Key] = new NeedBalance()
-                {
-                    Donation = 0,
-                    Necessity = necessity.Quantity
-                };
 
-            }
+            EnsureBalanceExists(necessity.Key);
 
+            _actorsNetwork.Saga.Balance[necessity.Key].Necessity += necessity.Quantity;
+           
             _actorsNetwork.ReplyToRequester(new BalanceDto()
             {
                 Key = necessity.Key,
@@ -46,7 +37,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
                 Balanced = _actorsNetwork.Saga.Balance[necessity.Key].Donation
             });
 
-            _actorsNetwork.SendMessageTo<NeedBalancerActor, NecessityDto>(necessity.Key, necessity);
+            _actorsNetwork.SendMessage(necessity).ToActor<NeedBalancerActor>(necessity.Key);
 
             return Task.CompletedTask;
         }
@@ -77,6 +68,18 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
             }
 
             return Task.CompletedTask;
+        }
+
+        private void EnsureBalanceExists(string necessityKey)
+        {
+            if (!_actorsNetwork.Saga.Balance.ContainsKey(necessityKey))
+            {
+                _actorsNetwork.Saga.Balance[necessityKey] = new NeedBalance()
+                {
+                    Donation = 0,
+                    Necessity = 0
+                };
+            }
         }
     }
 }

@@ -13,32 +13,32 @@ namespace MrMatrix.Net.ActorOnServiceBus.Api.Controllers;
 public class NecessitousController : ControllerBase
 {
     private readonly ILogger<NecessitousController> _logger;
-    private readonly IActorSystemExternalClient _actorsMeshClient;
+    private readonly IActorsNetworkExternalClient _actorsMeshClient;
 
-    public NecessitousController(ILogger<NecessitousController> logger, IActorSystemExternalClient actorsMeshClient)
+    public NecessitousController(ILogger<NecessitousController> logger, IActorsNetworkExternalClient actorsMeshClient)
     {
         _logger = logger;
         _actorsMeshClient = actorsMeshClient;
     }
 
-    [HttpPost("necessitiousId/{neccesitiousId}/registerNecessity")]
-    public async Task<IActionResult> Register([FromRoute] string neccesitiousId, [FromBody] Neccessity neccessity, CancellationToken cancellationToken)
+    [HttpPost("necessitousId/{necessitousId}/registerNecessity")]
+    public async Task<IActionResult> Register([FromRoute] string necessitousId, [FromBody] Neccessity neccessity, CancellationToken cancellationToken)
     {
-        var result = await _actorsMeshClient.SendMessageToAndWait<NecessitousActor, NecessityDto>(neccesitiousId, new()
+        var result = await _actorsMeshClient.SendMessageToAndWait<NecessitousActor, NecessityDto>(necessitousId, new NecessityDto()
         {
-            NecessitouId = neccesitiousId,
+            NecessitousId = necessitousId,
             Key = neccessity.Key,
             Quantity = neccessity.Quantity
         }, cancellationToken);
         return Ok(result);
     }
 
-    [HttpGet("necessitiousId/{neccesitiousId}/balance")]
-    public async Task<IActionResult> Balance([FromRoute] string neccesitiousId, CancellationToken cancellationToken)
+    [HttpGet("necessitousId/{necessitousId}/balance")]
+    public async Task<IActionResult> Balance([FromRoute] string necessitousId, CancellationToken cancellationToken)
     {
-        var result = await _actorsMeshClient.SendMessageToAndWait<NecessitousActor, BalanceQueryDto>(neccesitiousId, new()
+        var result = await _actorsMeshClient.SendMessageToAndWait<NecessitousActor, BalanceQueryDto>(necessitousId, new BalanceQueryDto()
         {
-            PersonId = neccesitiousId,
+            PersonId = necessitousId,
         }, cancellationToken);
         return Ok(result);
     }

@@ -25,18 +25,9 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
         {
             _actorsNetwork.Saga.DonorId = donation.DonorId;
             _logger.LogInformation("Registered necessity");
-            if (_actorsNetwork.Saga.Balance.ContainsKey(donation.Key))
-            {
-                _actorsNetwork.Saga.Balance[donation.Key].Donation += donation.Quantity;
-            }
-            else
-            {
-                _actorsNetwork.Saga.Balance[donation.Key] = new NeedBalance()
-                {
-                    Donation = donation.Quantity,
-                    Necessity = 0
-                };
-            }
+            EnsureBalanceExists(donation.Key);
+
+            _actorsNetwork.Saga.Balance[donation.Key].Donation += donation.Quantity;
 
             _actorsNetwork.ReplyToRequester(new BalanceDto()
             {
@@ -45,7 +36,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
                 Balanced = _actorsNetwork.Saga.Balance[donation.Key].Necessity
             });
 
-            _actorsNetwork.SendMessageTo<NeedBalancerActor, DonationDto>(donation.Key, donation);
+            _actorsNetwork.SendMessage(donation).ToActor<NeedBalancerActor>(donation.Key);
 
             return Task.CompletedTask;
         }
@@ -76,6 +67,18 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
             }
 
             return Task.CompletedTask;
+        }
+
+        private void EnsureBalanceExists(string donationKey)
+        {
+            if (!_actorsNetwork.Saga.Balance.ContainsKey(donationKey))
+            {
+                _actorsNetwork.Saga.Balance[donationKey] = new NeedBalance()
+                {
+                    Donation = 0,
+                    Necessity = 0
+                };
+            }
         }
     }
 }

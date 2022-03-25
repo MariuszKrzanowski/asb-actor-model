@@ -45,7 +45,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
 
             _actorsNetwork.Saga.Necessities.Add(new RegisteredNeed()
             {
-                PersonId = necessity.NecessitouId,
+                PersonId = necessity.NecessitousId,
                 Quantity = necessity.Quantity
             });
 

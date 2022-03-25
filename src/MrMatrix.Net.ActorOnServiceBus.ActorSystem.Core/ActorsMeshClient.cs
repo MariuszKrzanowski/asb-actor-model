@@ -5,12 +5,12 @@ using MrMatrix.Net.ActorOnServiceBus.Conventions;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
 
-public class ActorsMeshClient : IActorSystemExternalClient, IProcessorsCollection
+public class ActorsMeshClient : IActorsNetworkExternalClient, IProcessorsCollection
 {
     private readonly ServiceBusClient _serviceBusClient;
     private readonly IMessageSerializationHelper _messageSerializationHelper;
     private readonly IServiceBusTopicsFactory _topicsFactory;
-    private readonly string _replyToSubscritpion;
+    private readonly string _replyToSessionId;
     private const string MeshClientTopic = "web-client";
 
     private readonly ConcurrentDictionary<string, TaskCompletionSource<object>> _returns = new ConcurrentDictionary<string, TaskCompletionSource<object>>();
@@ -20,14 +20,14 @@ public class ActorsMeshClient : IActorSystemExternalClient, IProcessorsCollectio
         IMessageSerializationHelper messageSerializationHelper,
         IServiceBusTopicsFactory topicsFactory)
     {
-        _replyToSubscritpion = Guid.NewGuid().ToString("N");
+        _replyToSessionId = Guid.NewGuid().ToString("N");
         _serviceBusClient = serviceBusClient;
         _messageSerializationHelper = messageSerializationHelper;
         _topicsFactory = topicsFactory;
 
         _processor = _serviceBusClient.CreateSessionProcessor(MeshClientTopic, "inbox", new ServiceBusSessionProcessorOptions()
         {
-            SessionIds = { _replyToSubscritpion },
+            SessionIds = { _replyToSessionId },
             AutoCompleteMessages = false
         });
         _processor.ProcessMessageAsync += HandleReplyMessage;
@@ -65,7 +65,7 @@ public class ActorsMeshClient : IActorSystemExternalClient, IProcessorsCollectio
             CorrelationId = actorId,
             MessageId = messageid,
             ReplyTo = MeshClientTopic,
-            ReplyToSessionId = _replyToSubscritpion,
+            ReplyToSessionId = _replyToSessionId,
             TimeToLive = ttl
         };
         var cancellationTokenSource = new CancellationTokenSource(ttl);

@@ -63,7 +63,7 @@ public class NeedBalancerActorShould
         var sut = new NeedBalancerActor(network.Object, _logger);
         await sut.Handle(new NecessityDto()
         {
-            NecessitouId = "necessitous",
+            NecessitousId = "necessitous",
             Quantity = 2,
             Key = NecessityKey
         }, ctx);
@@ -96,7 +96,7 @@ public class NeedBalancerActorShould
         }, ctx);
         await sut.Handle(new NecessityDto()
         {
-            NecessitouId = "necessitous",
+            NecessitousId = "necessitous",
             Quantity = 2,
             Key = NecessityKey
         }, ctx);
@@ -121,7 +121,7 @@ public class NeedBalancerActorShould
         var sut = new NeedBalancerActor(network.Object, _logger);
         await sut.Handle(new NecessityDto()
         {
-            NecessitouId = "necessitous",
+            NecessitousId = "necessitous",
             Quantity = 2,
             Key = NecessityKey
         }, ctx);
@@ -152,7 +152,7 @@ public class NeedBalancerActorShould
         var sut = new NeedBalancerActor(network.Object, _logger);
         await sut.Handle(new NecessityDto()
         {
-            NecessitouId = "necessitous",
+            NecessitousId = "necessitous",
             Quantity = 2,
             Key = NecessityKey
         }, ctx);
@@ -191,7 +191,7 @@ public class NeedBalancerActorShould
         }, ctx);
         await sut.Handle(new NecessityDto()
         {
-            NecessitouId = "necessitous",
+            NecessitousId = "necessitous",
             Quantity = 1,
             Key = NecessityKey
         }, ctx);

@@ -43,7 +43,7 @@ public static class ActorsSystemBootstrap
         services.AddSingleton<ServiceBusClient>((s) => new ServiceBusClient(serviceBusConnectionString));
 
         services.AddSingleton<IServiceBusTopicsFactory, ServiceBusTopicsFactory>();
-        services.AddSingleton<IActorSystemExternalClient, ActorsMeshClient>();
+        services.AddSingleton<IActorsNetworkExternalClient, ActorsMeshClient>();
         services.AddSingleton<IActorSystem, ActorSystem>();
         services.AddScoped<SessionScope>();
         return services;
