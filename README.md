@@ -29,3 +29,8 @@ If you run following set of commands application should works fine.
 cd 'src\MrMatrix.Net.ActorOnServiceBus.Worker'
 dotnet user-secrets set "ActorSystem:ServiceBusConnectionString" "<Your service bus connection string>"
 ```
+
+## Saga is viotaile 
+
+Saga store is not implemented, it means when actor dies (e.g. session timeouts) its states dies too.
+

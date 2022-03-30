@@ -37,16 +37,11 @@
     <template name="parent">
         <div class="panel">
             <ul>
-                <!--<li>
-                    <span class="need-icon">🙏</span>
-                    <span class="need-icon">🎬</span>
-                    <span class="need-icon">👍</span>
-                    <span class="need-icon">💱</span>
-                </li>-->
+
             </ul>
             <div class="panel-header">
                 <h3>x</h3>
-                <div><button type="button" class="refresh">📤</button></div>
+                <div><button type="button" class="refresh" title="Press to reload balance and registered needs.">📤</button></div>
             </div>
         </div>
     </template>
@@ -54,12 +49,10 @@
 
     <template name="line">
         <li>
-            <input type="number" name="request" value="0" min="0" required="" />
-            <button class="submit-button">📩</button>
-            <span class="entered">0</span>
-            <span class="balanced">0</span>
-            <!--<input readonly="" value="0" />
-            <input readonly="" value="0" />-->
+            <input type="number" name="request" value="0" min="0" required="" title="Enter value to be sent to actor system." />
+            <button class="submit-button" title="Press to register need in actor system.">📩</button>
+            <span class="entered" title="Registered value in the actor system." >0</span>
+            <span class="balanced" title="Balanced value in the actor system.">0</span>
         </li>
     </template>
 

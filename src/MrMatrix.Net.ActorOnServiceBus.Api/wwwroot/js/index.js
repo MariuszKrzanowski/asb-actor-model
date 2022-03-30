@@ -1,4 +1,10 @@
-﻿(function (w) {
+﻿/*
+  This JavaScript uses do not consume any framework. The goal was to deliver rapidly simple SPA application working Actor Model.
+  That is why indexes are used instead of CSS queries.
+*/
+
+
+(function (w) {
     var needs = ['shorts', 't-shirt', 'dress', 'jacket'];
 
     var needsText = ['👖', '👕', '👗','🧥'];
