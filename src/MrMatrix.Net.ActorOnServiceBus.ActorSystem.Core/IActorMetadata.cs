@@ -1,6 +1,6 @@
-using System;
+using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 
-namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces
+namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core
 {
 
     public interface IActorMetadata
@@ -8,7 +8,6 @@ namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces
         Type ActorType { get; }
         MessageDirection Direction { get; }
         string TopicUri { get; }
-
         IActorMessageHandler CreateActorMessageHandler();
     }
 }

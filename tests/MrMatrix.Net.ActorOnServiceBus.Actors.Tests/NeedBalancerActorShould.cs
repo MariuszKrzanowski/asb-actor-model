@@ -1,12 +1,12 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
 using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
 using MrMatrix.Net.ActorOnServiceBus.Actors.Sagas;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using MrMatrix.Net.ActorOnServiceBus.Messages.Dtos;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Actors.Tests;
@@ -136,7 +136,7 @@ public class NeedBalancerActorShould
         saga.Necessities.Should().HaveCount(0);
         saga.Donations.Should().HaveCount(0);
     }
-    
+
     [Fact]
     public async Task DecrementExistingNecessityWhenDonationArrivesWithLowerQuantity()
     {

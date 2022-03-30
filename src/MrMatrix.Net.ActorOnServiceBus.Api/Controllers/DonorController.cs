@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
+using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using MrMatrix.Net.ActorOnServiceBus.Messages.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
-using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Api.Controllers;
 
@@ -41,7 +41,7 @@ public class DonorController : ControllerBase
         {
             PersonId = donorId,
         }).ToActorAndWait<DonorActor>(donorId, cancellationToken);
-        
+
         return Ok(result);
     }
 }

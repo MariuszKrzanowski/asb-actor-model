@@ -1,6 +1,6 @@
-using System.Reflection;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using MrMatrix.Net.ActorOnServiceBus.Conventions;
+using System.Reflection;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
 
@@ -72,8 +72,6 @@ public class ActorMetadata<TActor> : IActorMetadata
             return (Task?)(_methodInfo.Invoke(actor, new[] { message, cancellationToken }));
         }
     }
-
-
 
     private static bool MethodHasDto(MethodInfo mi)
     {

@@ -3,6 +3,10 @@ using System.Threading.Tasks;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces
 {
+    /// <summary>
+    /// This class helps build more fluent language to sent messages.
+    /// E.g.  `.SendMessage(message).ToActorAndWait<TActor>(actorId,cancellationToken) `
+    /// </summary>
     public static class ActorsNetworkExternalClientExtensions
     {
         public class SendMessageContext<TMessage>
@@ -16,13 +20,14 @@ namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces
                 _message = message;
             }
 
+
             public Task<object> ToActorAndWait<TActor>(string actorId, CancellationToken cancellationToken)
             {
                 return _actorsNetwork.SendMessageToAndWait<TActor, TMessage>(actorId, _message, cancellationToken);
             }
         }
 
-        public static SendMessageContext<TMessage> SendMessage<TMessage>(this IActorsNetworkExternalClient actorsNetwork, TMessage message) 
+        public static SendMessageContext<TMessage> SendMessage<TMessage>(this IActorsNetworkExternalClient actorsNetwork, TMessage message)
         {
             return new SendMessageContext<TMessage>(actorsNetwork, message);
         }

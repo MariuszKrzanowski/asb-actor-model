@@ -1,5 +1,9 @@
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces
 {
+    /// <summary>
+    /// This class helps build more fluent language to sent messages.
+    /// E.g.  `.SendMessage(message).ToActor<TActor>(actorId) `
+    /// </summary>
     public static class ActorNetworkExtensions
     {
         public class SendMessageContext<TSaga, TMessage>

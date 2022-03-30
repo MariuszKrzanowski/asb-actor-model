@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using MrMatrix.Net.ActorOnServiceBus.Messages.Dtos;
+﻿using MrMatrix.Net.ActorOnServiceBus.Messages.Dtos;
+using System.Collections.Generic;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Actors.Sagas
 {

@@ -21,7 +21,8 @@ namespace MrMatrix.Net.ActorOnServiceBus.Messages
 
         public static IServiceCollection ConfigureAllMessages(this IServiceCollection services)
         {
-            services.ConfigureMessages()
+            services
+                .ConfigureMessages()
                 .RegisterMessage<NecessityDto>()
                 .RegisterMessage<DonationDto>()
                 .RegisterMessage<BalanceDto>()

@@ -37,6 +37,8 @@ public class SessionScope
 
 public static class ActorsSystemBootstrap
 {
+
+
     public static IServiceCollection ConfigureActorSystem(this IServiceCollection services, IConfiguration configuration)
     {
         var serviceBusConnectionString = configuration["ActorSystem:ServiceBusConnectionString"];

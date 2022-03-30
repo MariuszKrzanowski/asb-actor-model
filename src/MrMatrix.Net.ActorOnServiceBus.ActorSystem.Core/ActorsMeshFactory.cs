@@ -29,8 +29,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core
                 SessionId = actorId,
                 PartitionKey = actorId,
                 CorrelationId = Guid.NewGuid().ToString("N"),
-                MessageId = Guid.NewGuid().ToString("N") //,
-                //TimeToLive = originatingMessage.TimeToLive
+                MessageId = Guid.NewGuid().ToString("N")
             };
             _sessionScope.PlaceInOutbox(_serviceBusTopicsFactory.FindTopic(typeof(TActor)), msg);
         }

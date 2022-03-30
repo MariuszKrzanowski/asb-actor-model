@@ -1,15 +1,15 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
-using MrMatrix.Net.ActorOnServiceBus.Messages;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
+using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
 using MrMatrix.Net.ActorOnServiceBus.Actors.Sagas;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
+using MrMatrix.Net.ActorOnServiceBus.Messages;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Api;
 
@@ -28,7 +28,7 @@ public static class Program
         builder.Services.AddSwaggerGen();
         builder.Services.ConfigureActorSystem(builder.Configuration);
         builder.Services.ConfigureAllMessages();
-        
+
 
 
         builder.Services
@@ -50,12 +50,12 @@ public static class Program
         {
             // based on blog article: https://andrewlock.net/adding-cache-control-headers-to-static-files-in-asp-net-core/
             app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = ctx =>
                 {
-                    OnPrepareResponse = ctx =>
-                    {
-                        ctx.Context.Response.Headers[HeaderNames.CacheControl] = "no-cache"; // To simplify DEV 
-                    }
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = "no-cache"; // To simplify DEV 
                 }
+            }
             );
         }
         else
@@ -65,7 +65,7 @@ public static class Program
 
         app.MapControllers();
 
-        
+
         CancellationToken cancellationToken = default;
         try
         {

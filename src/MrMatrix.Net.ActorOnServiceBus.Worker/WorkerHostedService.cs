@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Worker;
 

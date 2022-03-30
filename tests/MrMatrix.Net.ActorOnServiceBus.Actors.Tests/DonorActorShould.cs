@@ -1,12 +1,12 @@
-﻿using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
+using MrMatrix.Net.ActorOnServiceBus.Actors.Actors;
+using MrMatrix.Net.ActorOnServiceBus.Actors.Sagas;
+using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using MrMatrix.Net.ActorOnServiceBus.Messages.Dtos;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
-using Microsoft.Extensions.Logging;
-using Moq;
-using MrMatrix.Net.ActorOnServiceBus.Actors.Sagas;
-using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using Xunit;
 
 namespace MrMatrix.Net.ActorOnServiceBus.Actors.Tests
