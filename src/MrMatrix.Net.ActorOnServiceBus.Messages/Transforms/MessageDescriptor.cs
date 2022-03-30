@@ -9,7 +9,9 @@ namespace MrMatrix.Net.ActorOnServiceBus.Messages.Transforms
         public MessageDescriptor()
         {
             MessageType = typeof(TMessage);
-            MessageLabel = typeof(TMessage).GetCustomAttributes(false).Where(a => a.GetType() == typeof(MessageLabelAttribute)).Cast<MessageLabelAttribute>()
+            MessageLabel = typeof(TMessage)
+                .GetCustomAttributes(false)
+                .Where(a => a.GetType() == typeof(MessageLabelAttribute)).Cast<MessageLabelAttribute>()
                 .First().Label;
         }
 

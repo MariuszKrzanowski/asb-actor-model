@@ -58,11 +58,11 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
         {
             foreach (var balancedNeed in BalanceNeeds(_actorsNetwork.Saga))
             {
-                _actorsNetwork.SendMessageTo<NecessitousActor, BalancedNeed2Dto>(balancedNeed.NecessitiousId, new BalancedNeed2Dto { Key = _actorsNetwork.Saga.Key, Quantity = balancedNeed.Donations.Sum(d => d.Quantity) });
+                _actorsNetwork.SendMessageTo<NecessitousActor, BalancedNeedDto>(balancedNeed.NecessitiousId, new BalancedNeedDto { Key = _actorsNetwork.Saga.Key, Quantity = balancedNeed.Donations.Sum(d => d.Quantity) });
 
                 foreach (var donations in balancedNeed.Donations)
                 {
-                    _actorsNetwork.SendMessageTo<DonorActor, BalancedNeed2Dto>(donations.PersonId, new BalancedNeed2Dto { Key = _actorsNetwork.Saga.Key, Quantity = donations.Quantity });
+                    _actorsNetwork.SendMessageTo<DonorActor, BalancedNeedDto>(donations.PersonId, new BalancedNeedDto { Key = _actorsNetwork.Saga.Key, Quantity = donations.Quantity });
                 }
             }
         }
@@ -71,8 +71,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
         {
             var donations = new Queue<RegisteredNeed>(needsBalancer.Donations.Where(d => d.Quantity > 0).ToList());
             var necessities = new Queue<RegisteredNeed>(needsBalancer.Necessities.Where(d => d.Quantity > 0).ToList());
-
-
+            
             while (necessities.TryPeek(out var necessity))
             {
                 var left = necessity.Quantity;

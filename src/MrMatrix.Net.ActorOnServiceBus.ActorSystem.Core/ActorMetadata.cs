@@ -3,7 +3,6 @@ using MrMatrix.Net.ActorOnServiceBus.Conventions;
 using System.Reflection;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
-
 public class ActorMetadata<TActor> : IActorMetadata
 {
     public Type ActorType { get; }

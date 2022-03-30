@@ -46,7 +46,6 @@ public class SessionConsumer : IDisposable
         {
             _sessionScope.ProccessedMessageContext = null;
         }
-
     }
 
     public void Dispose()

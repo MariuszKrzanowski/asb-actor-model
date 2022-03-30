@@ -28,7 +28,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Messages
                 .RegisterMessage<BalanceDto>()
                 .RegisterMessage<BalanceQueryDto>()
                 .RegisterMessage<BalanceResponseDto>()
-                .RegisterMessage<BalancedNeed2Dto>()
+                .RegisterMessage<BalancedNeedDto>()
                 ;
             return services;
         }

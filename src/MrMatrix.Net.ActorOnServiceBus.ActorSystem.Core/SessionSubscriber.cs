@@ -55,7 +55,7 @@ public class SessionSubscriber
         }
         return Task.CompletedTask;
     }
-
+    
     private Task InitSaga(ProcessSessionEventArgs arg)
     {
         _subscribedActors.TryAdd(arg.SessionId, new SessionConsumer(arg.SessionId, _serviceServiceScopeFactory, _actorMessageHandler, _messageSerializationHelper, _serviceBusTopicsFactory, _actorType));

@@ -11,7 +11,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Messages.Transforms
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
             NullValueHandling = NullValueHandling.Ignore,
-            Converters = { new StringEnumConverter(true) }
+            Converters = { new StringEnumConverter(new CamelCaseNamingStrategy(),true) }
         };
 
         public static string SerializeObject(object o)

@@ -6,6 +6,5 @@ namespace MrMatrix.Net.ActorOnServiceBus.Messages.Dtos
     public class BalanceQueryDto
     {
         public string PersonId { get; set; }
-
     }
 }

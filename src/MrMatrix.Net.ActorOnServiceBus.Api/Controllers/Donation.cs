@@ -5,10 +5,4 @@ namespace MrMatrix.Net.ActorOnServiceBus.Api.Controllers
         public string Key { get; set; }
         public int Quantity { get; set; }
     }
-
-    public class Neccessity
-    {
-        public string Key { get; set; }
-        public int Quantity { get; set; }
-    }
 }

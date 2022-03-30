@@ -22,13 +22,13 @@ public class NecessitousController : ControllerBase
     }
 
     [HttpPost("necessitousId/{necessitousId}/registerNecessity")]
-    public async Task<IActionResult> Register([FromRoute] string necessitousId, [FromBody] Neccessity neccessity, CancellationToken cancellationToken)
+    public async Task<IActionResult> Register([FromRoute] string necessitousId, [FromBody] Necessity necessity, CancellationToken cancellationToken)
     {
         var result = await _actorsMeshClient.SendMessageToAndWait<NecessitousActor, NecessityDto>(necessitousId, new NecessityDto()
         {
             NecessitousId = necessitousId,
-            Key = neccessity.Key,
-            Quantity = neccessity.Quantity
+            Key = necessity.Key,
+            Quantity = necessity.Quantity
         }, cancellationToken);
         return Ok(result);
     }

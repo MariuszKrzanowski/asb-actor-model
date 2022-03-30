@@ -2,7 +2,6 @@ using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core
 {
-
     public interface IActorMetadata
     {
         Type ActorType { get; }

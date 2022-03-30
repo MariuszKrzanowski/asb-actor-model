@@ -59,7 +59,7 @@ namespace MrMatrix.Net.ActorOnServiceBus.Actors.Actors
             return Task.CompletedTask;
         }
 
-        public Task Handle(BalancedNeed2Dto balancedNeed, CancellationToken cancellationToken)
+        public Task Handle(BalancedNeedDto balancedNeed, CancellationToken cancellationToken)
         {
             if (_actorsNetwork.Saga.Balance.ContainsKey(balancedNeed.Key))
             {

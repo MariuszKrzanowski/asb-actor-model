@@ -4,7 +4,6 @@ using MrMatrix.Net.ActorOnServiceBus.ActorSystem.Interfaces;
 using MrMatrix.Net.ActorOnServiceBus.Conventions;
 
 namespace MrMatrix.Net.ActorOnServiceBus.ActorSystem.Core;
-
 public class ActorSystem : IActorSystem
 {
     private readonly ServiceBusClient _serviceBusClient;
