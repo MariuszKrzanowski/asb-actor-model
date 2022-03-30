@@ -1,5 +1,6 @@
 ﻿/*
-  This JavaScript uses do not consume any framework. The goal was to deliver rapidly simple SPA application working Actor Model.
+  This JavaScript file do not consume any framework. 
+  The goal was to deliver rapidly simple SPA application working with presented Actor Model.
   That is why indexes are used instead of CSS queries.
 */
 
